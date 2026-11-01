@@ -100,19 +100,27 @@ and `--select <n>`. The tools are described in
 
 ## Building it
 
-The mod is Rust and needs Horizon's own toolchain:
+The mod is Rust, and it needs Horizon's own toolchain. Rust **1.95 or
+newer** (Horizon's runtime is wasmtime 48), the WebAssembly target, and
+Horizon's mod tool:
 
 ```sh
-# Rust, with the WebAssembly target
+# 1. Rust, with the target the mod is compiled for
+rustup update
 rustup target add wasm32-unknown-unknown
 
-# Horizon's mod tool
+# 2. Horizon's mod tool
 cargo install --git https://github.com/horizon-rust/horizon cargo-horizon-mod
 
-# the mod itself
-cargo horizon-mod build          # target/horizon-mod/mod_menu.hmod
+# 3. the mod
+cargo horizon-mod build                          # -> target/horizon-mod/mod_menu.hmod
 cargo horizon-mod check target/horizon-mod/mod_menu.hmod
 ```
+
+`cargo horizon-mod check` is what the registry runs before a mod is
+published: it reads the manifest, refuses the imports the capabilities do
+not cover, and plays the mod in the sandbox for 40 ticks, 120 frames, a
+chat line and each of its commands.
 
 The tests are the model's tests and the shared cases:
 
@@ -123,16 +131,43 @@ cargo clippy --all-targets --locked -- -D warnings
 ```
 
 The sandbox driver loads the built `.hmod` in Horizon's own runtime and
-uses it the way a player does, so the parts that only a running game can
-show are checked too:
+uses it the way a player does, so the parts only a running game can show
+are checked too:
 
 ```sh
 cargo run --manifest-path tools/sandbox/Cargo.toml -- target/horizon-mod/mod_menu.hmod
 ```
 
+### Developing it
+
+`cargo horizon-mod run` builds the mod and starts the game with it as a
+dev mod: it is always on, and the game checks the file once a second, so
+a rebuild reloads it while the game runs.
+
+```sh
+cargo horizon-mod run
+```
+
+A dev mod keeps its storage **beside the built file**, not in the
+instance: `target/horizon-mod/.horizon-mod-data/mod_menu/`. The feed goes
+there, and the instance's mods are what it lists:
+
+```sh
+node tools/launcher-side/modmenur.mjs feed <instance> --write --mods-dir target/horizon-mod
+```
+
+Press `M` in the game: the menu opens with that instance's mods. A
+change the player asks for lands in the same folder, and
+
+```sh
+node tools/launcher-side/modmenur.mjs apply <instance> --mods-dir target/horizon-mod
+```
+
+writes it to `horizon-mods.txt`.
+
 ## Installing it
 
-Put `mod_menu.hmod` in the instance's `horizon-mods/` folder, beside
+Put the built `.hmod` in the instance's `horizon-mods/` folder, beside
 `options.txt`, and write the feed:
 
 ```sh

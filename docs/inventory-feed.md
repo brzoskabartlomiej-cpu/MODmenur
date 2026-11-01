@@ -14,6 +14,16 @@ reads it.
 `<instance>` is the game folder: the one with `options.txt` and
 `horizon-mods/` in it.
 
+The runtime keeps a mod's storage beside the mod's file, in
+`<the folder the .hmod is in>/.horizon-mod-data/<the mod's id>/`. A mod
+run as a dev mod (`cargo horizon-mod run`) is built to
+`target/horizon-mod/`, so its feed goes to
+`target/horizon-mod/.horizon-mod-data/mod_menu/inventory.json`:
+
+```sh
+node tools/launcher-side/modmenur.mjs feed <instance> --write --mods-dir target/horizon-mod
+```
+
 ## Schema 2
 
 ```json

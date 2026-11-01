@@ -204,3 +204,17 @@ test("the file is written the way the game writes it", () => {
     "mod.a:true\nmod.b:true\nmod.c:false\nkey.a.open:key.keyboard.k\n",
   );
 });
+
+test("the feed may go beside a dev build, whose storage is next to it", () => {
+  const home = instance();
+  const { mods } = scan(home);
+  // A mod run as `--dev-mod target/horizon-mod/mod_menu.hmod` keeps its
+  // storage beside that file, not in the instance.
+  const dev = tempDir("dev");
+  const path = writeFeed(home, buildFeed(mods), dev);
+  assert.equal(
+    path,
+    join(dev, ".horizon-mod-data", "mod_menu", "inventory.json"),
+  );
+  assert.ok(existsSync(path));
+});

@@ -36,6 +36,10 @@ function usage() {
       "",
       "The menu's screen takes --search <text>, --filter All|Enabled|Disabled,",
       "--page <n> and --select <n>.",
+      "",
+      "feed and apply take --mods-dir <dir>: the folder the mods live in, for a",
+      "mod run as a dev mod (target/horizon-mod), whose storage is beside the",
+      "built .hmod rather than in the instance.",
     ].join("\n"),
   );
 }
@@ -47,6 +51,10 @@ if (!command || !["scan", "feed", "apply", "menu"].includes(command)) {
 
 const home = resolve(rest[0] ?? process.cwd());
 const flags = new Set(rest.slice(1));
+/** The folder the mods live in: the instance's, or a dev build's. */
+const modsDir = flags.has("--mods-dir")
+  ? resolve(rest[rest.indexOf("--mods-dir") + 1])
+  : undefined;
 
 if (command === "scan") {
   const { mods } = scan(home);
@@ -64,7 +72,7 @@ if (command === "feed") {
   const { mods } = scan(home);
   const feed = buildFeed(mods);
   if (flags.has("--write")) {
-    const path = writeFeed(home, feed);
+    const path = writeFeed(home, feed, modsDir);
     console.log(`wrote ${path}`);
   } else {
     console.log(JSON.stringify(feed, null, 2));
@@ -72,18 +80,18 @@ if (command === "feed") {
 }
 
 if (command === "apply") {
-  const { applied, file } = applyPending(home);
+  const { applied, file } = applyPending(home, modsDir);
   if (!applied.length) {
-    console.log(`nothing to apply (${pendingPath(home)})`);
+    console.log(`nothing to apply (${pendingPath(home, modsDir)})`);
   } else {
     for (const change of applied) {
       console.log(`${change.enabled ? "enable" : "disable"} ${change.id} (${change.kind})`);
     }
     console.log(`wrote ${file}`);
-    clearPending(home);
+    clearPending(home, modsDir);
     const { mods } = scan(home);
-    writeFeed(home, buildFeed(mods));
-    console.log(`refreshed ${feedPath(home)}`);
+    writeFeed(home, buildFeed(mods), modsDir);
+    console.log(`refreshed ${feedPath(home, modsDir)}`);
   }
 }
 

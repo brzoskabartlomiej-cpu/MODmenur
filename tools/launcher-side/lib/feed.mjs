@@ -12,9 +12,15 @@ import { MODS_DIR, STORAGE_DIR } from "./scan.mjs";
 /** The Mod Menu's id: the folder its storage is in. */
 export const MOD_ID = "mod_menu";
 
-/** Where the feed is written, in the instance. */
-export function feedPath(home) {
-  return join(home, MODS_DIR, STORAGE_DIR, MOD_ID, "inventory.json");
+/**
+ * Where the feed is written.
+ *
+ * The folder is the one the mods live in: the instance's `horizon-mods/`,
+ * or, for a mod run as `--dev-mod`, the folder the built `.hmod` is in. The
+ * runtime keeps a mod's storage beside the file: `<that folder>/.horizon-mod-data/<id>/`.
+ */
+export function feedPath(home, modsDir) {
+  return join(modsDir ?? join(home, MODS_DIR), STORAGE_DIR, MOD_ID, "inventory.json");
 }
 
 /** The feed for the mods an instance has installed. */
@@ -40,8 +46,8 @@ export function buildFeed(mods) {
 }
 
 /** Writes the feed, atomically: a temporary sibling, then the name. */
-export function writeFeed(home, feed) {
-  const path = feedPath(home);
+export function writeFeed(home, feed, modsDir) {
+  const path = feedPath(home, modsDir);
   const text = JSON.stringify(feed, null, 2) + "\n";
   if (Buffer.byteLength(text, "utf8") > MAX_FEED) {
     throw new Error("Inventory is too large; update your launcher.");

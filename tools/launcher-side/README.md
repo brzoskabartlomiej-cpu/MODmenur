@@ -15,6 +15,15 @@ node modmenur.mjs apply <instance>            # apply the changes the player ask
 node modmenur.mjs menu  <instance>            # the menu's screen, as the game draws it
 ```
 
+`feed` and `apply` take `--mods-dir <dir>`: the folder the mods live in.
+It is the instance's `horizon-mods/`, or, for a mod run as a dev mod
+(`cargo horizon-mod run`), the folder the built `.hmod` is in, because
+the runtime keeps a mod's storage beside its file:
+
+```sh
+node modmenur.mjs feed <instance> --write --mods-dir target/horizon-mod
+```
+
 To try them without an instance, make one:
 
 ```sh

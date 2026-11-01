@@ -18,15 +18,25 @@ import { join } from "node:path";
 
 import { MODS_FILE, scan } from "./scan.mjs";
 
-/** The file the menu writes the changes into. */
-export function pendingPath(home) {
-  return join(home, "horizon-mods", ".horizon-mod-data", "mod_menu", "pending.json");
+/**
+ * The file the menu writes the changes into.
+ *
+ * The same folder the feed is in: the mods' folder, or the folder the
+ * built `.hmod` is in when the mod runs as a dev mod.
+ */
+export function pendingPath(home, modsDir) {
+  return join(
+    modsDir ?? join(home, "horizon-mods"),
+    ".horizon-mod-data",
+    "mod_menu",
+    "pending.json",
+  );
 }
 
 /** The changes waiting, or none. */
-export function readPending(home) {
+export function readPending(home, modsDir) {
   try {
-    const feed = JSON.parse(readFileSync(pendingPath(home), "utf8"));
+    const feed = JSON.parse(readFileSync(pendingPath(home, modsDir), "utf8"));
     const changes = Array.isArray(feed.changes) ? feed.changes : [];
     return changes
       .filter((change) => change && typeof change.id === "string")
@@ -90,8 +100,8 @@ export function writeModsFile(home, { enabled, disabled, keys }) {
 }
 
 /** Applies the changes waiting for the launcher. */
-export function applyPending(home) {
-  const changes = readPending(home);
+export function applyPending(home, modsDir) {
+  const changes = readPending(home, modsDir);
   if (!changes.length) return { applied: [], file: null };
   const { mods } = scan(home);
   const kinds = new Map(mods.map((mod) => [mod.id, mod.kind]));
@@ -121,8 +131,8 @@ export function applyPending(home) {
 }
 
 /** Takes the changes back, so the menu asks again. */
-export function clearPending(home) {
-  const path = pendingPath(home);
+export function clearPending(home, modsDir) {
+  const path = pendingPath(home, modsDir);
   if (!existsSync(path)) return null;
   writeFileSync(path, JSON.stringify({ schema: 1, changes: [] }, null, 2) + "\n");
   return path;
