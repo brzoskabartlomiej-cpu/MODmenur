@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "mods": [
+    {
+      "id": "alpha",
+      "name": "Alpha Mod",
+      "version": "1.0.0",
+      "kind": "Sandboxed",
+      "enabled": true
+    },
+    {
+      "id": "beta",
+      "name": "Beta Mod",
+      "version": "2.1.0",
+      "kind": "Content",
+      "enabled": false
+    },
+    {
+      "id": "veinminer",
+      "name": "Veinminer",
+      "version": "0.3.0",
+      "kind": "Native",
+      "enabled": true
+    },
+    {
+      "id": "coords_hud",
+      "name": "Coordinates HUD",
+      "version": "0.1.0",
+      "kind": "Native",
+      "enabled": false
+    },
+    {
+      "id": "broken",
+      "name": "Broken Mod",
+      "version": "1.0.0",
+      "kind": "Sandboxed",
+      "enabled": false,
+      "problem": "Cant be read: horizon-mod.toml: missing"
+    },
+    {
+      "id": "filler_00",
+      "name": "Filler 00",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": true
+    },
+    {
+      "id": "filler_01",
+      "name": "Filler 01",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": false
+    },
+    {
+      "id": "filler_02",
+      "name": "Filler 02",
+      "version": "0.0.1",
+      "kind": "Native",
+      "enabled": true
+    },
+    {
+      "id": "filler_03",
+      "name": "Filler 03",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": false
+    },
+    {
+      "id": "filler_04",
+      "name": "Filler 04",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": true
+    },
+    {
+      "id": "filler_05",
+      "name": "Filler 05",
+      "version": "0.0.1",
+      "kind": "Native",
+      "enabled": false
+    },
+    {
+      "id": "filler_06",
+      "name": "Filler 06",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": true
+    },
+    {
+      "id": "filler_07",
+      "name": "Filler 07",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": false
+    },
+    {
+      "id": "filler_08",
+      "name": "Filler 08",
+      "version": "0.0.1",
+      "kind": "Native",
+      "enabled": true
+    },
+    {
+      "id": "filler_09",
+      "name": "Filler 09",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": false
+    },
+    {
+      "id": "filler_10",
+      "name": "Filler 10",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": true
+    },
+    {
+      "id": "filler_11",
+      "name": "Filler 11",
+      "version": "0.0.1",
+      "kind": "Native",
+      "enabled": false
+    },
+    {
+      "id": "filler_12",
+      "name": "Filler 12",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": true
+    },
+    {
+      "id": "filler_13",
+      "name": "Filler 13",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": false
+    },
+    {
+      "id": "filler_14",
+      "name": "Filler 14",
+      "version": "0.0.1",
+      "kind": "Native",
+      "enabled": true
+    },
+    {
+      "id": "filler_15",
+      "name": "Filler 15",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": false
+    },
+    {
+      "id": "filler_16",
+      "name": "Filler 16",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": true
+    },
+    {
+      "id": "filler_17",
+      "name": "Filler 17",
+      "version": "0.0.1",
+      "kind": "Native",
+      "enabled": false
+    },
+    {
+      "id": "filler_18",
+      "name": "Filler 18",
+      "version": "0.0.1",
+      "kind": "Sandboxed",
+      "enabled": true
+    },
+    {
+      "id": "filler_19",
+      "name": "Filler 19",
+      "version": "0.0.1",
+      "kind": "Content",
+      "enabled": false
+    }
+  ]
+}

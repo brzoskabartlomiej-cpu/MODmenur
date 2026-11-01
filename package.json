@@ -1,0 +1,19 @@
+{
+  "name": "modmenur",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mod Menu for Horizon: the launcher-side tools, the checks and the shared cases",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tools/launcher-side/test/*.test.mjs",
+    "check:spec": "node scripts/check-spec.mjs",
+    "check:sdk": "node scripts/check-sdk-api.mjs",
+    "check:syntax": "node scripts/check-rust-syntax.mjs",
+    "check": "npm run check:spec && npm run check:syntax && npm test"
+  },
+  "devDependencies": {
+    "tree-sitter": "^0.21.1",
+    "tree-sitter-rust": "^0.21.0"
+  }
+}

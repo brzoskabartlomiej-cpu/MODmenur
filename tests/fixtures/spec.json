@@ -1,0 +1,198 @@
+{
+  "feed": "feed-schema2.json",
+  "pageSize": 20,
+  "cases": [
+    {
+      "name": "all",
+      "filter": "All",
+      "query": "",
+      "expectedIds": [
+        "alpha",
+        "beta",
+        "broken",
+        "coords_hud",
+        "filler_00",
+        "filler_01",
+        "filler_02",
+        "filler_03",
+        "filler_04",
+        "filler_05",
+        "filler_06",
+        "filler_07",
+        "filler_08",
+        "filler_09",
+        "filler_10",
+        "filler_11",
+        "filler_12",
+        "filler_13",
+        "filler_14",
+        "filler_15",
+        "filler_16",
+        "filler_17",
+        "filler_18",
+        "filler_19",
+        "veinminer"
+      ]
+    },
+    {
+      "name": "enabled",
+      "filter": "Enabled",
+      "query": "",
+      "expectedIds": [
+        "alpha",
+        "filler_00",
+        "filler_02",
+        "filler_04",
+        "filler_06",
+        "filler_08",
+        "filler_10",
+        "filler_12",
+        "filler_14",
+        "filler_16",
+        "filler_18",
+        "veinminer"
+      ]
+    },
+    {
+      "name": "disabled",
+      "filter": "Disabled",
+      "query": "",
+      "expectedIds": [
+        "beta",
+        "broken",
+        "coords_hud",
+        "filler_01",
+        "filler_03",
+        "filler_05",
+        "filler_07",
+        "filler_09",
+        "filler_11",
+        "filler_13",
+        "filler_15",
+        "filler_17",
+        "filler_19"
+      ]
+    },
+    {
+      "name": "search by name",
+      "filter": "All",
+      "query": "vein",
+      "expectedIds": [
+        "veinminer"
+      ]
+    },
+    {
+      "name": "search by id",
+      "filter": "All",
+      "query": "coords_hud",
+      "expectedIds": [
+        "coords_hud"
+      ]
+    },
+    {
+      "name": "search by kind",
+      "filter": "All",
+      "query": "native",
+      "expectedIds": [
+        "coords_hud",
+        "filler_02",
+        "filler_05",
+        "filler_08",
+        "filler_11",
+        "filler_14",
+        "filler_17",
+        "veinminer"
+      ]
+    },
+    {
+      "name": "search by author",
+      "filter": "All",
+      "query": "ann",
+      "expectedIds": [
+        "alpha"
+      ]
+    },
+    {
+      "name": "search is case insensitive",
+      "filter": "All",
+      "query": "ALPHA",
+      "expectedIds": [
+        "alpha"
+      ]
+    },
+    {
+      "name": "search finds nothing",
+      "filter": "All",
+      "query": "nothing here",
+      "expectedIds": []
+    },
+    {
+      "name": "search inside the filter",
+      "filter": "Enabled",
+      "query": "mod",
+      "expectedIds": [
+        "alpha",
+        "filler_00",
+        "filler_02",
+        "filler_04",
+        "filler_06",
+        "filler_08",
+        "filler_10",
+        "filler_12",
+        "filler_14",
+        "filler_16",
+        "filler_18"
+      ]
+    },
+    {
+      "name": "search inside the disabled filter",
+      "filter": "Disabled",
+      "query": "filler",
+      "expectedIds": [
+        "filler_01",
+        "filler_03",
+        "filler_05",
+        "filler_07",
+        "filler_09",
+        "filler_11",
+        "filler_13",
+        "filler_15",
+        "filler_17",
+        "filler_19"
+      ]
+    }
+  ],
+  "pages": {
+    "total": 25,
+    "pageCount": 2,
+    "firstPage": [
+      "alpha",
+      "beta",
+      "broken",
+      "coords_hud",
+      "filler_00",
+      "filler_01",
+      "filler_02",
+      "filler_03",
+      "filler_04",
+      "filler_05",
+      "filler_06",
+      "filler_07",
+      "filler_08",
+      "filler_09",
+      "filler_10",
+      "filler_11",
+      "filler_12",
+      "filler_13",
+      "filler_14",
+      "filler_15"
+    ],
+    "secondPage": [
+      "filler_16",
+      "filler_17",
+      "filler_18",
+      "filler_19",
+      "veinminer"
+    ]
+  }
+}

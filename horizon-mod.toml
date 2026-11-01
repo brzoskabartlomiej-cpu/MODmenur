@@ -1,0 +1,9 @@
+id = "mod_menu"
+name = "Mod Menu"
+version = "0.1.0"
+description = "Browse the mods installed in this instance, search them and turn them on or off. Open with M or /modmenu. Reads the inventory the launcher writes."
+authors = ["brzoskabartlomiej-cpu"]
+api = "0.1"
+side = "client"
+capabilities = ["ui", "input", "storage"]
+experimental = ["ui", "input"]

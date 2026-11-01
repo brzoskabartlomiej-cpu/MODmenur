@@ -1,0 +1,9 @@
+# Rust
+/target
+
+# The tools
+node_modules/
+
+# Editors
+.DS_Store
+*.swp

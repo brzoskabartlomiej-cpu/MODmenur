@@ -1,0 +1,11 @@
+[package]
+name = "modmenur-sandbox-check"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[dependencies]
+horizon-mods = { git = "https://github.com/horizon-rust/horizon", rev = "83f15fa276c44711276b6ceb5f0fe0c9c534dc66", features = ["runtime"] }
+serde_json = "1"
